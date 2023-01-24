@@ -20,7 +20,7 @@ const { dinosaurs, humans, movies } = require('./datasets/dinosaurs');
 
 // DATASET: kitties from ./datasets/kitties
 const kittyPrompts = {
-  orangePetNames(kitties) {
+  orangePetNames(kittiesOrPuppers) {
     // Return an array of just the names of kitties who are orange e.g.
         // ['Tiger', 'Snickers']
 
@@ -37,7 +37,7 @@ const kittyPrompts = {
 
         // ~~~WOMBO COMBO:
 
-       const filteredKitties = kitties.filter((kitty) => {
+       const filteredKitties = kittiesOrPuppers.filter((kitty) => {
         if(kitty.color === 'orange'){
           return kitty
         }
@@ -58,34 +58,27 @@ const kittyPrompts = {
   },
 
 
-  sortByAge(kitties) {
-    // Sort the kitties by their age
-    const  sortedKitties = kitties.sort(() => {
-      
+  sortByAge(kittiesOrPuppers) {
+    // const sortKitties = kitties.sort((a, b) => {
+    //   return b.age - a.age;
+    // })
+    // return sortKitties
+    return kittiesOrPuppers.sort((a, b) => {
+      return b.age - a.age;
     })
-    console.log(sortedKitties)
-
-    // Annotation:
-    // Write your annotation here as a comment
   },
 
-  growUp(kitties) {
-    // Return an array of kitties who have all grown up by 2 years e.g.
-    // [{
-    //   name: 'Felicia',
-    //   age: 4,
-    //   color: 'grey'
-    // },
-    // {
-    //   name: 'Tiger',
-    //   age: 7,
-    //   color: 'orange'
-    // },
-    // ...etc]
-
+  growUp(kittiesOrPuppers) {
     //return all objects with age of +2
 
-    /* CODE GOES HERE */
+    const agedKitties = kittiesOrPuppers.map((kitty) => {
+      // kitty.age = kitty.age+2
+      kitty.age += 2
+      console.log(kitty.age)
+      return kitty
+    });
+    console.log(agedKitties)
+    return agedKitties
   }
 };
 
@@ -121,8 +114,8 @@ const clubPrompts = {
 
     /* CODE GOES HERE */
 
-    // Annotation:
-    // Write your annotation here as a comment
+    //pseudocode:
+   
   }
 };
 
