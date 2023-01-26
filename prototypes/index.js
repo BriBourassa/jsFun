@@ -20,40 +20,66 @@ const { dinosaurs, humans, movies } = require('./datasets/dinosaurs');
 
 // DATASET: kitties from ./datasets/kitties
 const kittyPrompts = {
-  orangePetNames() {
+  orangePetNames(kittiesOrPuppers) {
     // Return an array of just the names of kitties who are orange e.g.
         // ['Tiger', 'Snickers']
 
-        /* CODE GOES HERE */
+        // ~~~using .forEach():
 
-    // Annotation:
-    // Write your annotation here as a comment
+        // const orangeKitties = [];
+
+        // kitties.forEach((kitty) => {
+        //   if(kitty.color === 'orange'){
+        //      orangeKitties.push(kitty.name)
+        //   }
+        // })
+        // return orangeKitties
+
+        // ~~~WOMBO COMBO:
+
+       const filteredKitties = kittiesOrPuppers.filter((kitty) => {
+        if(kitty.color === 'orange'){
+          return kitty
+        }
+       })
+      //  console.log(filteredKitties)
+
+       const orangeKittyNames = filteredKitties.map((kitty) => {
+        // console.log(kitty)
+        return kitty.name
+       })
+
+      // console.log(orangeKittyNames)
+
+       return orangeKittyNames
+       // ^^^^ DONT FORGET TO RETURN ALL THE STUFF WE DID
+
+    // pseudocode:
+    // iterate through array, conditional to find orange kitties, return name of orange kitties
   },
 
-  sortByAge() {
-    // Sort the kitties by their age
 
-    /* CODE GOES HERE */
-
-    // Annotation:
-    // Write your annotation here as a comment
+  sortByAge(kittiesOrPuppers) {
+    // const sortKitties = kitties.sort((a, b) => {
+    //   return b.age - a.age;
+    // })
+    // return sortKitties
+    return kittiesOrPuppers.sort((a, b) => {
+      return b.age - a.age;
+    })
   },
 
-  growUp() {
-    // Return an array of kitties who have all grown up by 2 years e.g.
-    // [{
-    //   name: 'Felicia',
-    //   age: 4,
-    //   color: 'grey'
-    // },
-    // {
-    //   name: 'Tiger',
-    //   age: 7,
-    //   color: 'orange'
-    // },
-    // ...etc]
+  growUp(kittiesOrPuppers) {
+    //return all objects with age of +2
 
-    /* CODE GOES HERE */
+    const agedKitties = kittiesOrPuppers.map((kitty) => {
+      // kitty.age = kitty.age+2
+      kitty.age += 2
+      // console.log(kitty.age)
+      return kitty
+    });
+    // console.log(agedKitties)
+    return agedKitties
   }
 };
 
@@ -89,8 +115,8 @@ const clubPrompts = {
 
     /* CODE GOES HERE */
 
-    // Annotation:
-    // Write your annotation here as a comment
+    //pseudocode:
+   
   }
 };
 
@@ -474,11 +500,12 @@ const breweryPrompts = {
   getBeerCount() {
     // Return the total beer count of all beers for every brewery e.g.
     // 40
-
-    /* CODE GOES HERE */
-
-    // Annotation:
-    // Write your annotation here as a comment
+   const beerCount = breweries
+      .map((brewery) => {return brewery.beers.length})
+      .reduce((total, beers) => total + beers, 0);
+    
+  //  console.log(beerCount)
+   return beerCount
   },
 
   getBreweryBeerCount() {
@@ -490,10 +517,14 @@ const breweryPrompts = {
     // ...etc.
     // ]
 
-    /* CODE GOES HERE */
-
-    // Annotation:
-    // Write your annotation here as a comment
+    const newBrewArray = breweries.map((brewery) => {
+      const breweryStats = {}
+      breweryStats.name = brewery.name
+      breweryStats.beerCount = brewery.beers.length
+      // console.log(breweryStats)
+      return breweryStats
+    })
+    return newBrewArray
   },
 
   getSingleBreweryBeerCount(breweryName) {
