@@ -50,8 +50,9 @@ const kittyPrompts = {
        })
 
       // console.log(orangeKittyNames)
+
        return orangeKittyNames
-       // DONT FORGET TO RETURN ALL THE STUFF WE DID
+       // ^^^^ DONT FORGET TO RETURN ALL THE STUFF WE DID
 
     // pseudocode:
     // iterate through array, conditional to find orange kitties, return name of orange kitties
@@ -74,10 +75,10 @@ const kittyPrompts = {
     const agedKitties = kittiesOrPuppers.map((kitty) => {
       // kitty.age = kitty.age+2
       kitty.age += 2
-      console.log(kitty.age)
+      // console.log(kitty.age)
       return kitty
     });
-    console.log(agedKitties)
+    // console.log(agedKitties)
     return agedKitties
   }
 };
@@ -499,11 +500,12 @@ const breweryPrompts = {
   getBeerCount() {
     // Return the total beer count of all beers for every brewery e.g.
     // 40
-
-    /* CODE GOES HERE */
-
-    // Annotation:
-    // Write your annotation here as a comment
+   const beerCount = breweries
+      .map((brewery) => {return brewery.beers.length})
+      .reduce((total, beers) => total + beers, 0);
+    
+  //  console.log(beerCount)
+   return beerCount
   },
 
   getBreweryBeerCount() {
@@ -515,10 +517,14 @@ const breweryPrompts = {
     // ...etc.
     // ]
 
-    /* CODE GOES HERE */
-
-    // Annotation:
-    // Write your annotation here as a comment
+    const newBrewArray = breweries.map((brewery) => {
+      const breweryStats = {}
+      breweryStats.name = brewery.name
+      breweryStats.beerCount = brewery.beers.length
+      // console.log(breweryStats)
+      return breweryStats
+    })
+    return newBrewArray
   },
 
   getSingleBreweryBeerCount(breweryName) {
