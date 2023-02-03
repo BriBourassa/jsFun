@@ -24,7 +24,7 @@ const kittyPrompts = {
     // Return an array of just the names of kitties who are orange e.g.
         // ['Tiger', 'Snickers']
 
-        // ~~~using .forEach():
+        // ~~~~~~~~~~~using .forEach()~~~~~~~~~~~~~~~~~~~~~~~~~~:
 
         // const orangeKitties = [];
 
@@ -34,28 +34,27 @@ const kittyPrompts = {
         //   }
         // })
         // return orangeKitties
+        // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-        // ~~~WOMBO COMBO:
+        // ~~~WOMBO COMBO~~~~:
 
-       const filteredKitties = kittiesOrPuppers.filter((kitty) => {
-        if(kitty.color === 'orange'){
-          return kitty
-        }
-       })
-      //  console.log(filteredKitties)
-
-       const orangeKittyNames = filteredKitties.map((kitty) => {
-        // console.log(kitty)
-        return kitty.name
-       })
-
-      // console.log(orangeKittyNames)
-
-       return orangeKittyNames
+      // const filteredKitties = kittiesOrPuppers.filter((kitty) => {
+      //   if(kitty.color === 'orange'){
+      //     return kitty
+      //   }
+      //  })
+      // const orangeKittyNames = filteredKitties.map((kitty) => {
+      //   return kitty.name
+      //  })
+      //  return orangeKittyNames
        // ^^^^ DONT FORGET TO RETURN ALL THE STUFF WE DID
 
-    // pseudocode:
-    // iterate through array, conditional to find orange kitties, return name of orange kitties
+
+       // ~~~~~~~~~~~~~CHAINED~~~~~~~~~~~~~~
+
+       return kittiesOrPuppers
+        .filter(kitty => kitty.color === 'orange')
+        .map(kitty => kitty.name)
   },
 
 
@@ -71,14 +70,10 @@ const kittyPrompts = {
 
   growUp(kittiesOrPuppers) {
     //return all objects with age of +2
-
     const agedKitties = kittiesOrPuppers.map((kitty) => {
-      // kitty.age = kitty.age+2
       kitty.age += 2
-      // console.log(kitty.age)
       return kitty
     });
-    // console.log(agedKitties)
     return agedKitties
   }
 };
@@ -148,15 +143,23 @@ const modPrompts = {
     //   { mod: 4, studentsPerInstructor: 8 }
     // ]
 
-    /* CODE GOES HERE */
+    // const studentsPer = []
+    // mods.forEach((mod) => {
+    //   const num = { mod: mod.mod, studentsPerInstructor: mod.students / mod.instructors}
+    //   studentsPer.push(num)
+    // })
+    
+    // console.log(studentsPer)
+    // return studentsPer
 
-    // Annotation:
-    // Write your annotation here as a comment
+    const usinMap = mods.map((mod) => {
+      const num = { mod: mod.mod, studentsPerInstructor: mod.students / mod.instructors}
+      return num
+    })
+    return usinMap
+
   }
 };
-
-
-
 
 
 
@@ -182,7 +185,12 @@ const cakePrompts = {
     //    ..etc
     // ]
 
-    /* CODE GOES HERE */
+    const weMappin = cakes.map(cake => {
+      return {flavor: cake.cakeFlavor, inStock: cake.inStock}
+      
+    })
+    // console.log(weMappin)
+    return weMappin
 
     // Annotation:
     // Write your annotation here as a comment
@@ -209,20 +217,20 @@ const cakePrompts = {
     // ..etc
     // ]
 
-    /* CODE GOES HERE */
-
-    // Annotation:
-    // Write your annotation here as a comment
+    const existingCakes = cakes.filter(cake => cake.inStock > 0)
+    return existingCakes
   },
 
   totalInventory() {
     // Return the total amount of cakes in stock e.g.
     // 59
 
-    /* CODE GOES HERE */
-
-    // Annotation:
-    // Write your annotation here as a comment
+    const allTheCakes = cakes.reduce((acc, cur) => {
+      acc += cur.inStock
+      return acc;
+    }, 0);
+    return allTheCakes
+ // cur = cake!
   },
 
   allToppings() {
@@ -230,10 +238,8 @@ const cakePrompts = {
     // every cake in the dataset e.g.
     // ['dutch process cocoa', 'toasted sugar', 'smoked sea salt', 'berries', ..etc]
 
-    /* CODE GOES HERE */
+    
 
-    // Annotation:
-    // Write your annotation here as a comment
   },
 
   groceryList() {
@@ -532,11 +538,26 @@ const breweryPrompts = {
     // brewery has e.g.
     // given 'Ratio Beerworks', return 5
 
+    const breweryList = []
 
     /* CODE GOES HERE */
+    // const breweryBeerCount = breweries
+        // .filter(brewery => brewery === breweryName)
+
+        .forEach(brewery => {
+          if(brewery === breweryName)
+          breweryList.push(brewery.name)
+        })
+        // console.log(breweryBeerCount)
+      return breweryList
+          
+          
+        
+
 
     // Annotation:
-    // Write your annotation here as a comment
+    // brewery is param,
+    // when enter brewery, filter to find that one and then map to return the beer count
   },
 
   findHighestAbvBeer() {
