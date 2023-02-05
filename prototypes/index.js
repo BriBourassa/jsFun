@@ -509,7 +509,6 @@ const breweryPrompts = {
    const beerCount = breweries
       .map((brewery) => {return brewery.beers.length})
       .reduce((total, beers) => total + beers, 0);
-    
   //  console.log(beerCount)
    return beerCount
   },
@@ -530,6 +529,7 @@ const breweryPrompts = {
       // console.log(breweryStats)
       return breweryStats
     })
+    // console.log(newBrewArray)
     return newBrewArray
   },
 
@@ -539,25 +539,12 @@ const breweryPrompts = {
     // given 'Ratio Beerworks', return 5
 
     const breweryList = []
-
-    /* CODE GOES HERE */
-    // const breweryBeerCount = breweries
-        // .filter(brewery => brewery === breweryName)
-
-        .forEach(brewery => {
-          if(brewery === breweryName)
-          breweryList.push(brewery.name)
+  
+        const forEachBrewery = breweries.forEach(brewery => {
+          if(brewery.name === breweryName)
+          breweryList.push(brewery.beers.length)
         })
-        // console.log(breweryBeerCount)
-      return breweryList
-          
-          
-        
-
-
-    // Annotation:
-    // brewery is param,
-    // when enter brewery, filter to find that one and then map to return the beer count
+        return parseInt(breweryList)
   },
 
   findHighestAbvBeer() {
