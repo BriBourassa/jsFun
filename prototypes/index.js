@@ -400,7 +400,7 @@ const weatherPrompts = {
       const high = location.temperature.high
       const low = location.temperature.low
       const average = (high + low) / 2
-      console.log(average)
+      // console.log(average)
       return average
     })
   },
@@ -437,12 +437,16 @@ const weatherPrompts = {
     const sortedWeather =  weather.sort((a,b) => {
       return b.humidity - a.humidity
     })
-    console.log(sortedWeather)
+    return sortedWeather[0]
+    // console.log(sortedWeather)
     // want: one element
     // want: entire element 
     // sort elements highest to lowest, return highest humidity
-    // (pretend we don't have exact number)
-    return sortedWeather[0]
+    // (pretending we don't have exact number)
+    
+    // using find:
+    // return weather.find(location => location.humidity === 84)
+
   }
 };
 
