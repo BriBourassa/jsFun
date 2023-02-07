@@ -552,10 +552,32 @@ const breweryPrompts = {
     // e.g.
     // { name: 'Barrel Aged Nature\'s Sweater', type: 'Barley Wine', abv: 10.9, ibu: 40 }
 
-    /* CODE GOES HERE */
+    
+
+    const onlyBeers = breweries.map((brewery) => {
+        return brewery.beers
+    })
+
+    const flattenArray = onlyBeers
+          .reduce((arr, onlyBeers) => 
+          [...arr, ...onlyBeers], []);
+
+    const highestAbvBeer = flattenArray
+          .sort((a,b) => {
+            return a.abv - b.abv
+          }).pop()
+
+          // console.log(highestAbvBeer)
+          return highestAbvBeer
+    
+    
+
+    // console.log(highestAbvBeer)
 
     // Annotation:
-    // Write your annotation here as a comment
+    // want: object of ONE beer 
+    // isolate every object's beers array w/map?
+    // .find to locate one beer, then map it into one obj?
   }
 };
 
