@@ -238,7 +238,7 @@ const cakePrompts = {
     // every cake in the dataset e.g.
     // ['dutch process cocoa', 'toasted sugar', 'smoked sea salt', 'berries', ..etc]
 
-    
+
 
   },
 
@@ -389,10 +389,20 @@ const weatherPrompts = {
     // return an array of all the average temperatures. Eg:
     // [ 40, 40, 44.5, 43.5, 57, 35, 65.5, 62, 14, 46.5 ]
 
-    /* CODE GOES HERE */
+  
+    // want: new array, same size
+    // want: only average temps in array
+    // options: map, forEach, reduce
+    // need param? no
 
-    // Annotation:
-    // Write your annotation here as a comment
+     return weather.map(location => {
+      // console.log(location.temperature.low)
+      const high = location.temperature.high
+      const low = location.temperature.low
+      const average = (high + low) / 2
+      console.log(average)
+      return average
+    })
   },
 
   findSunnySpots() {
@@ -403,9 +413,16 @@ const weatherPrompts = {
     // 'Raleigh, North Carolina is mostly sunny.' ]
 
     /* CODE GOES HERE */
+    const sunnySpots = weather
+        .filter(location => location.type === 'sunny' || location.type === 'mostly sunny')
+        .map(location => `${location.location} is ${location.type}.` )
+    
+    return sunnySpots
 
-    // Annotation:
-    // Write your annotation here as a comment
+    // want: array of sunny/ NOT same length
+    // want: interpolation
+    // options: forEach, filter, reduce
+    // filter in sunny
   },
 
   findHighestHumidity() {
@@ -417,11 +434,15 @@ const weatherPrompts = {
     //   temperature: { high: 49, low: 38 }
     // }
 
-    /* CODE GOES HERE */
-
-    // Annotation:
-    // Write your annotation here as a comment
-
+    const sortedWeather =  weather.sort((a,b) => {
+      return b.humidity - a.humidity
+    })
+    console.log(sortedWeather)
+    // want: one element
+    // want: entire element 
+    // sort elements highest to lowest, return highest humidity
+    // (pretend we don't have exact number)
+    return sortedWeather[0]
   }
 };
 
