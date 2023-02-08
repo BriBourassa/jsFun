@@ -147,7 +147,7 @@ describe("PROTOTYPES", () => {
   });
 
   describe("Mod Prompts", () => {
-    it.skip("studentsPerMod", () => {
+    it("studentsPerMod", () => {
       const e = modPrompts.studentsPerMod();
 
       expect(e).to.deep.equal([{
@@ -167,7 +167,7 @@ describe("PROTOTYPES", () => {
   });
 
   describe("Cake Prompts", () => {
-    it.skip("stockPerCake", () => {
+    it("stockPerCake", () => {
       const e = cakePrompts.stockPerCake();
 
       expect(e).to.deep.equal([{
@@ -191,7 +191,7 @@ describe("PROTOTYPES", () => {
       }])
     });
 
-    it.skip("onlyInStock", () => {
+    it("onlyInStock", () => {
       const e = cakePrompts.onlyInStock();
 
       expect(e).to.deep.equal([{
@@ -221,7 +221,7 @@ describe("PROTOTYPES", () => {
       }])
     });
 
-    it.skip("totalInventory", () => {
+    it("totalInventory", () => {
       const e = cakePrompts.totalInventory();
 
       expect(e).to.deep.equal(59)
@@ -471,7 +471,7 @@ describe("PROTOTYPES", () => {
       }])
     });
 
-    it.skip("getSingleBreweryBeerCount", () => {
+    it("getSingleBreweryBeerCount", () => {
       const ratioCount = breweryPrompts.getSingleBreweryBeerCount('Ratio Beerworks');
       const plattCount = breweryPrompts.getSingleBreweryBeerCount('Platt Park Brewing Co.');
 
@@ -479,7 +479,7 @@ describe("PROTOTYPES", () => {
       expect(plattCount).to.equal(7);
     });
 
-    it.skip("findHighestAbvBeer", () => {
+    it("findHighestAbvBeer", () => {
       const e = breweryPrompts.findHighestAbvBeer();
 
       expect(e).to.deep.equal({
