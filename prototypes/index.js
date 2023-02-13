@@ -238,7 +238,16 @@ const cakePrompts = {
     // every cake in the dataset e.g.
     // ['dutch process cocoa', 'toasted sugar', 'smoked sea salt', 'berries', ..etc]
 
-    
+
+    const onlyToppings  = cakes.map((topping) => { 
+      return cake.topping
+    })
+    return onlyToppings
+
+    // pseudocode:
+    // want an array
+    // want to isolate the toppings from the original array - map()
+    // want to flatten the array of arrays
 
   },
 
@@ -288,9 +297,11 @@ const classPrompts = {
     // ]
 
     /* CODE GOES HERE */
+    return classrooms.filter((classroom) =>classroom.program === 'FE')
 
-    // Annotation:
-    // Write your annotation here as a comment
+
+    // want: array of different size
+    
   },
 
   totalCapacities() {
@@ -301,10 +312,33 @@ const classPrompts = {
     //   beCapacity: 96
     // }
 
-    /* CODE GOES HERE */
+    const feCapacities = classrooms
+      .filter(classroom => classroom.program === 'FE')
+      .reduce((acc, classroom) =>{
+        acc += classroom.capacity
+        return acc
+      },0);
+      console.log(feCapacities)
 
-    // Annotation:
-    // Write your annotation here as a comment
+
+    // const beCapacities = classrooms.map
+
+
+
+
+    const capacities = classrooms.reduce((acc, classroom) => {
+      classroom.program === 'FE'
+        feCapacity += classroom.capacity
+        // console.log(acc)
+      
+      return acc
+    },{feCapacity: 0,
+    beCapacity: 0})
+
+    console.log(capacities)
+      return capacities
+    
+
   },
 
   sortByCapacity() {
