@@ -552,8 +552,6 @@ const breweryPrompts = {
     // e.g.
     // { name: 'Barrel Aged Nature\'s Sweater', type: 'Barley Wine', abv: 10.9, ibu: 40 }
 
-    
-
     const onlyBeers = breweries.map((brewery) => {
         return brewery.beers
     })
@@ -569,7 +567,6 @@ const breweryPrompts = {
 
           // console.log(highestAbvBeer)
           return highestAbvBeer
-    
     
 
     // console.log(highestAbvBeer)
