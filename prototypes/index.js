@@ -465,13 +465,21 @@ const nationalParksPrompts = {
     // and the ones I have already visited eg:
     // {
     //   parksToVisit: ["Yellowstone", "Glacier", "Everglades"],
+    // = visited = FALSE
+
     //   parksVisited: ["Rocky Mountain", "Acadia", "Zion"]
-    //}
+    //} = visited = TRUE
 
-    /* CODE GOES HERE */
+    const parksVisited = nationalParks
+        .filter(parks => parks.visited === true)
+        .map(parks => parks.name)
 
-    // Annotation:
-    // Write your annotation here as a comment
+    const parksToVisit = nationalParks
+        .filter(park => park.visited === false)
+        .map(parks => parks.name)
+   
+    const needToVisit = {parksToVisit, parksVisited}
+      return needToVisit
   },
 
   getParkInEachState() {
