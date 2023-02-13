@@ -239,6 +239,7 @@ const cakePrompts = {
     // ['dutch process cocoa', 'toasted sugar', 'smoked sea salt', 'berries', ..etc]
 
 
+
     const onlyToppings  = cakes.map((topping) => { 
       return cake.topping
     })
@@ -248,6 +249,7 @@ const cakePrompts = {
     // want an array
     // want to isolate the toppings from the original array - map()
     // want to flatten the array of arrays
+
 
   },
 
@@ -423,10 +425,20 @@ const weatherPrompts = {
     // return an array of all the average temperatures. Eg:
     // [ 40, 40, 44.5, 43.5, 57, 35, 65.5, 62, 14, 46.5 ]
 
-    /* CODE GOES HERE */
+  
+    // want: new array, same size
+    // want: only average temps in array
+    // options: map, forEach, reduce
+    // need param? no
 
-    // Annotation:
-    // Write your annotation here as a comment
+     return weather.map(location => {
+      // console.log(location.temperature.low)
+      const high = location.temperature.high
+      const low = location.temperature.low
+      const average = (high + low) / 2
+      console.log(average)
+      return average
+    })
   },
 
   findSunnySpots() {
@@ -437,9 +449,16 @@ const weatherPrompts = {
     // 'Raleigh, North Carolina is mostly sunny.' ]
 
     /* CODE GOES HERE */
+    const sunnySpots = weather
+        .filter(location => location.type === 'sunny' || location.type === 'mostly sunny')
+        .map(location => `${location.location} is ${location.type}.` )
+    
+    return sunnySpots
 
-    // Annotation:
-    // Write your annotation here as a comment
+    // want: array of sunny/ NOT same length
+    // want: interpolation
+    // options: forEach, filter, reduce
+    // filter in sunny
   },
 
   findHighestHumidity() {
@@ -451,11 +470,15 @@ const weatherPrompts = {
     //   temperature: { high: 49, low: 38 }
     // }
 
-    /* CODE GOES HERE */
-
-    // Annotation:
-    // Write your annotation here as a comment
-
+    const sortedWeather =  weather.sort((a,b) => {
+      return b.humidity - a.humidity
+    })
+    console.log(sortedWeather)
+    // want: one element
+    // want: entire element 
+    // sort elements highest to lowest, return highest humidity
+    // (pretend we don't have exact number)
+    return sortedWeather[0]
   }
 };
 
@@ -543,7 +566,6 @@ const breweryPrompts = {
    const beerCount = breweries
       .map((brewery) => {return brewery.beers.length})
       .reduce((total, beers) => total + beers, 0);
-    
   //  console.log(beerCount)
    return beerCount
   },
@@ -564,6 +586,7 @@ const breweryPrompts = {
       // console.log(breweryStats)
       return breweryStats
     })
+    // console.log(newBrewArray)
     return newBrewArray
   },
 
@@ -573,25 +596,12 @@ const breweryPrompts = {
     // given 'Ratio Beerworks', return 5
 
     const breweryList = []
-
-    /* CODE GOES HERE */
-    // const breweryBeerCount = breweries
-        // .filter(brewery => brewery === breweryName)
-
-        .forEach(brewery => {
-          if(brewery === breweryName)
-          breweryList.push(brewery.name)
+  
+        const forEachBrewery = breweries.forEach(brewery => {
+          if(brewery.name === breweryName)
+          breweryList.push(brewery.beers.length)
         })
-        // console.log(breweryBeerCount)
-      return breweryList
-          
-          
-        
-
-
-    // Annotation:
-    // brewery is param,
-    // when enter brewery, filter to find that one and then map to return the beer count
+        return parseInt(breweryList)
   },
 
   findHighestAbvBeer() {
@@ -599,10 +609,32 @@ const breweryPrompts = {
     // e.g.
     // { name: 'Barrel Aged Nature\'s Sweater', type: 'Barley Wine', abv: 10.9, ibu: 40 }
 
-    /* CODE GOES HERE */
+    
+
+    const onlyBeers = breweries.map((brewery) => {
+        return brewery.beers
+    })
+
+    const flattenArray = onlyBeers
+          .reduce((arr, onlyBeers) => 
+          [...arr, ...onlyBeers], []);
+
+    const highestAbvBeer = flattenArray
+          .sort((a,b) => {
+            return a.abv - b.abv
+          }).pop()
+
+          // console.log(highestAbvBeer)
+          return highestAbvBeer
+    
+    
+
+    // console.log(highestAbvBeer)
 
     // Annotation:
-    // Write your annotation here as a comment
+    // want: object of ONE beer 
+    // isolate every object's beers array w/map?
+    // .find to locate one beer, then map it into one obj?
   }
 };
 

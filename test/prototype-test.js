@@ -376,20 +376,20 @@ describe("PROTOTYPES", () => {
   });
 
   describe("Weather prompts", () => {
-    it.skip("getAverageTemps", () => {
+    it("getAverageTemps", () => {
       const e = weatherPrompts.getAverageTemps();
 
       expect(e).to.deep.equal([
         40, 40, 44.5, 43.5, 57, 35, 65.5, 62, 14, 46.5
       ])
     }),
-      it.skip("findSunnySpots", () => {
+      it("findSunnySpots", () => {
         const e = weatherPrompts.findSunnySpots();
 
         expect(e).to.deep.equal(['Atlanta, Georgia is sunny.', 'New Orleans, Louisiana is sunny.', 'Raleigh, North Carolina is mostly sunny.']
         )
       }),
-      it.skip("findHighestHumidity", () => {
+      it("findHighestHumidity", () => {
         const e = weatherPrompts.findHighestHumidity();
 
         expect(e).to.deep.equal({
@@ -471,7 +471,7 @@ describe("PROTOTYPES", () => {
       }])
     });
 
-    it.skip("getSingleBreweryBeerCount", () => {
+    it("getSingleBreweryBeerCount", () => {
       const ratioCount = breweryPrompts.getSingleBreweryBeerCount('Ratio Beerworks');
       const plattCount = breweryPrompts.getSingleBreweryBeerCount('Platt Park Brewing Co.');
 
@@ -479,7 +479,7 @@ describe("PROTOTYPES", () => {
       expect(plattCount).to.equal(7);
     });
 
-    it.skip("findHighestAbvBeer", () => {
+    it("findHighestAbvBeer", () => {
       const e = breweryPrompts.findHighestAbvBeer();
 
       expect(e).to.deep.equal({
