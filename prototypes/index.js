@@ -436,7 +436,7 @@ const weatherPrompts = {
       const high = location.temperature.high
       const low = location.temperature.low
       const average = (high + low) / 2
-      console.log(average)
+      // console.log(average)
       return average
     })
   },
@@ -473,12 +473,16 @@ const weatherPrompts = {
     const sortedWeather =  weather.sort((a,b) => {
       return b.humidity - a.humidity
     })
-    console.log(sortedWeather)
+    return sortedWeather[0]
+    // console.log(sortedWeather)
     // want: one element
     // want: entire element 
     // sort elements highest to lowest, return highest humidity
-    // (pretend we don't have exact number)
-    return sortedWeather[0]
+    // (pretending we don't have exact number)
+    
+    // using find:
+    // return weather.find(location => location.humidity === 84)
+
   }
 };
 
@@ -497,13 +501,35 @@ const nationalParksPrompts = {
     // and the ones I have already visited eg:
     // {
     //   parksToVisit: ["Yellowstone", "Glacier", "Everglades"],
+    // = visited = FALSE
+
     //   parksVisited: ["Rocky Mountain", "Acadia", "Zion"]
-    //}
+    //} = visited = TRUE
 
-    /* CODE GOES HERE */
+    const parksVisited = nationalParks
+        .filter(parks => parks.visited === true)
+        .map(parks => parks.name)
 
-    // Annotation:
-    // Write your annotation here as a comment
+    const parksToVisit = nationalParks
+        .filter(park => park.visited === false)
+        .map(parks => parks.name)
+   
+    const needToVisit = {parksToVisit, parksVisited}
+      return needToVisit
+
+    // ~~~~~ using REDUCE ~~~~~ (((incomplete)))
+
+  //   const reduceParks = nationalParks.reduce((acc, park) =>{
+  //     if(park.visited === true){
+    
+  //     parksVisited= [acc += park.name]
+    
+    
+  // }
+  // return acc
+  //   }, {parksToVisit: [], parksVisited: []})
+
+
   },
 
   getParkInEachState() {
@@ -515,11 +541,18 @@ const nationalParksPrompts = {
     // { Utah: 'Zion' },
     // { Florida: 'Everglades' } ]
 
+// ~~~~~~~~~~~~ REDUCE ALSMOT WORKED THIS TIME~~~~~~~~~~
 
-    /* CODE GOES HERE */
+    // const TonyHawkStateParks = nationalParks.reduce((acc, stateObj) => {
+    //   acc[stateObj.location] = stateObj.name
+    //   return acc
+    // }, []);
+    // console.log(TonyHawkStateParks)
 
-    // Annotation:
-    // Write your annotation here as a comment
+
+    const parks = nationalParks.map(parkobject => (newObject = { [parkobject.location]: parkobject.name }))
+    // console.log(parks)
+    return parks
   },
 
   getParkActivities() {
@@ -538,10 +571,13 @@ const nationalParksPrompts = {
     //   'backpacking',
     //   'rock climbing' ]
 
-    /* CODE GOES HERE */
-
-    // Annotation:
-    // Write your annotation here as a comment
+    const activitiesArray = nationalParks
+        .map(park => park.activities)
+        .flat()
+        
+    const dedupe = [...new Set(activitiesArray)]    
+    // console.log(dedupe)
+    return dedupe
   }
 };
 
