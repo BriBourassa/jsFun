@@ -480,6 +480,20 @@ const nationalParksPrompts = {
    
     const needToVisit = {parksToVisit, parksVisited}
       return needToVisit
+
+    // ~~~~~ using REDUCE ~~~~~ (((incomplete)))
+
+  //   const reduceParks = nationalParks.reduce((acc, park) =>{
+  //     if(park.visited === true){
+    
+  //     parksVisited= [acc += park.name]
+    
+    
+  // }
+  // return acc
+  //   }, {parksToVisit: [], parksVisited: []})
+
+
   },
 
   getParkInEachState() {
@@ -491,11 +505,18 @@ const nationalParksPrompts = {
     // { Utah: 'Zion' },
     // { Florida: 'Everglades' } ]
 
+// ~~~~~~~~~~~~ REDUCE ALSMOT WORKED THIS TIME~~~~~~~~~~
 
-    /* CODE GOES HERE */
+    // const TonyHawkStateParks = nationalParks.reduce((acc, stateObj) => {
+    //   acc[stateObj.location] = stateObj.name
+    //   return acc
+    // }, []);
+    // console.log(TonyHawkStateParks)
 
-    // Annotation:
-    // Write your annotation here as a comment
+
+    const parks = nationalParks.map(parkobject => (newObject = { [parkobject.location]: parkobject.name }))
+    // console.log(parks)
+    return parks
   },
 
   getParkActivities() {
@@ -514,10 +535,13 @@ const nationalParksPrompts = {
     //   'backpacking',
     //   'rock climbing' ]
 
-    /* CODE GOES HERE */
-
-    // Annotation:
-    // Write your annotation here as a comment
+    const activitiesArray = nationalParks
+        .map(park => park.activities)
+        .flat()
+        
+    const dedupe = [...new Set(activitiesArray)]    
+    // console.log(dedupe)
+    return dedupe
   }
 };
 
