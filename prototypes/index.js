@@ -238,19 +238,13 @@ const cakePrompts = {
     // every cake in the dataset e.g.
     // ['dutch process cocoa', 'toasted sugar', 'smoked sea salt', 'berries', ..etc]
 
+    const onlyToppings = cakes
+        .map(cake => cake.toppings)
+        .flat()
+    const dedupeTheCakes = [...new Set(onlyToppings)]
 
-
-    const onlyToppings  = cakes.map((topping) => { 
-      return cake.topping
-    })
-    return onlyToppings
-
-    // pseudocode:
-    // want an array
-    // want to isolate the toppings from the original array - map()
-    // want to flatten the array of arrays
-
-
+    // console.log(dedupeTheCakes)
+    return dedupeTheCakes
   },
 
   groceryList() {
@@ -264,10 +258,25 @@ const cakePrompts = {
     //    ...etc
     // }
 
-    /* CODE GOES HERE */
 
-    // Annotation:
-    // Write your annotation here as a comment
+    // const mapToppings = cakes
+    //       .flatMap(cake => {
+    //         return cake.toppings
+    //       })
+    // const dedupeToppings = [...new Set(mapToppings)]
+   
+   
+
+   const groceries = cakes.map(cake => cake.toppings)
+      .flat()
+      .reduce((acc, topping) => {
+        acc[topping] = (acc[topping] || 0) +1
+        return acc
+      }, {})
+
+      // console.log(groceries)
+      return groceries
+   
   }
 };
 
@@ -320,18 +329,16 @@ const classPrompts = {
         acc += classroom.capacity
         return acc
       },0);
-      console.log(feCapacities)
+      // console.log(feCapacities)
 
 
     // const beCapacities = classrooms.map
 
 
-
-
     const capacities = classrooms.reduce((acc, classroom) => {
       classroom.program === 'FE'
         feCapacity += classroom.capacity
-        // console.log(acc)
+        console.log(acc)
       
       return acc
     },{feCapacity: 0,
@@ -689,10 +696,8 @@ const boardGamePrompts = {
     // e.g. given an argument of "strategy", return
     // ["Chess", "Catan", "Checkers", "Pandemic", "Battle Ship", "Azul", "Ticket to Ride"]
 
-    /* CODE GOES HERE */
-
-    // Annotation:
-    // Write your annotation here as a comment
+      return boardGames[type]
+        .map((game) => (game.name))
   },
 
   listGamesAlphabetically(type) {
@@ -700,11 +705,10 @@ const boardGamePrompts = {
     // type, sorted alphabetically. 
     // e.g. given an argument of "childrens", return
     // ["Candy Land", "Connect Four", "Operation", "Trouble"]
+    // console.log(this.listGames('strategy'))
 
-    /* CODE GOES HERE */
+   return this.listGames(type).sort()
 
-    // Annotation:
-    // Write your annotation here as a comment
   },
 
   findHighestRatedGamesByType(type) {
@@ -712,21 +716,21 @@ const boardGamePrompts = {
     // e.g. given the argument of 'party', return
     // { name: 'Codenames', rating: 7.4, maxPlayers: 8 },
 
-    /* CODE GOES HERE */
-
-    // Annotation:
-    // Write your annotation here as a comment
+    const sortedGames =  boardGames[type].sort((a,b) => {
+      return a.rating - b.rating
+    })
+    return sortedGames[boardGames[type].length - 1]
   },
 
   averageScoreByType(type) {
     // Return the average score for the specified type.
     // e.g. given the argument of "strategy", return 7
     // note: do not worry about rounding your result.
-
-    /* CODE GOES HERE */
-
-    // Annotation:
-    // Write your annotation here as a comment
+    
+    return boardGames[type].reduce((sum, game) => {
+      sum = sum + game.rating
+      return sum
+    },0) / boardGames[type].length
   },
 
   averageScoreByTypeAndPlayers(type, maximumPlayers) {
@@ -735,10 +739,15 @@ const boardGamePrompts = {
     // e.g. given the arguments of "strategy" and 2, return 6.16666666667
     // note: do not worry about rounding your result.
 
-    /* CODE GOES HERE */
+   const filteredGames = boardGames[type].filter(game => {
+    return game.maxPlayers === maximumPlayers
+  })
 
-    // Annotation:
-    // Write your annotation here as a comment
+    return filteredGames.reduce((sum, game) => {
+      sum = sum + game.rating
+      return sum
+    }, 0) / filteredGames.length
+    
   }
 };
 
